@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Movie_Site.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!-- Section -->
+<section class="md-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-8 offset-0 offset-sm-0 offset-md-0 offset-lg-1 offset-xl-2 ">
+                <!-- title-01 -->
+                <div class="title-01 title-01__style-04">
+                    <h6 class="title-01__subTitle">Log out</h6>
+                    <h2 class="title-01__title">Are you sure you want to log out?</h2>
+                    <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
+                        <button type="submit" class="btn btn-default">Log off</button>
+                    </form>
+                    <!-- End / title-01 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End / Section -->
