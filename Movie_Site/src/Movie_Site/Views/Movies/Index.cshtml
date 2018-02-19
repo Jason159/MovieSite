@@ -1,58 +1,44 @@
 @model IEnumerable<Movie_Site.Models.Movie>
-<!-- Section -->
+
 <section class="md-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-xl-8 offset-0 offset-sm-0 offset-md-0 offset-lg-1 offset-xl-2 ">
 
-                <p>
-                    <a asp-action="Create">Create New</a>
-                </p>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ImageUrl)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Mdescription)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Price)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Title)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ImageUrl)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Mdescription)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Price)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Title)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.MovieId">Edit</a> |
-                                    <a asp-action="Details" asp-route-id="@item.MovieId">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.MovieId">Delete</a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                <!-- title-01 -->
+                <div class="title-01 title-01__style-04">
+                    <h6 class="title-01__subTitle">Movies</h6>
+                    <h2 class="title-01__title">Current list of movies</h2>
+                    <div>Curabitur elementum urna augue, eu porta purus gravida in. Cras consectetur, lorem a cursus vestibulum, ligula purus iaculis nulla, in dignissim risus turpis id justo. Sed eleifend ante et ligula eleifend ultricies. Fusce porta feugiat nisl, eget faucibus augue ultrices et. Nullam id leo fringilla, viverra est ut, faucibus lectus. Integer vel finibus ex, et convallis enim. Curabitur tristique convallis neque a eleifend. Donec mattis leo in velit scelerisque, sit amet ultricies erat mollis. Suspendisse potenti. Etiam commodo ipsum placerat, ornare libero a, consequat justo.</div>
+                </div><!-- End / title-01 -->
+
             </div>
         </div>
     </div>
 </section>
-<!-- End / Section -->
+
+<section class="md-section" style="background-color:#f7f7f7;padding:0;">
+    <div class="container">
+        <div class="textbox-group">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4 col-lg-4 ">
+
+                        <!-- textbox -->
+                        <div class="textbox">
+                            <div class="textbox__image"><a href="#">
+                                <img class="" src="@item.ImageUrl" alt="" />
+                                </a>
+                            </div>
+                            <div class="textbox__body">
+                                <h2 class="textbox__title"><a href="#">@item.Title</a></h2>
+                                <div class="textbox__description">@item.Mdescription</div>
+                            </div>
+                        </div><!-- End / textbox -->
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
