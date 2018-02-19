@@ -47,6 +47,11 @@ namespace Movie_Site.Controllers
             return View();
         }
 
+        public IActionResult Logout()
+        {
+            return View();
+        }
+
         //
         // POST: /Account/Login
         [HttpPost]

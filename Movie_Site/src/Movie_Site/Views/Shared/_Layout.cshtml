@@ -58,17 +58,9 @@
                             <a href="#">cart</a>
                         </li>
                         <li>
-                            <a href="#">login</a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="#">Google</a>
-                                </li>
-                                <li>
-                                    <a href="#">Facebook</a>
-                                </li>
-                            </ul>
-                        </li>
+                        @await Html.PartialAsync("_LoginPartial")
                     </ul>
+                    
                 </nav><!-- End / consult-nav -->
 
             </div>
@@ -166,5 +158,6 @@
     <script type="text/javascript" src="~/vendors/smoothscroll/SmoothScroll.min.js"></script>
     <!-- App-->
     <script type="text/javascript" src="~/js/main.js"></script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>
