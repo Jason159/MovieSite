@@ -1,0 +1,30 @@
+@model Movie_Site.Models.SessionTimes
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SessionTimes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BookedSeats)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BookedSeats)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MovieTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MovieTime)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SessionId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

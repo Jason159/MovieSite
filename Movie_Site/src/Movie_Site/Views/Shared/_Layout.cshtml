@@ -27,9 +27,56 @@
 
 <body>
     <div class="page-wrap">
+        <!-- header -->
+        <header class="header">
+            <div class="container">
+                <div class="header__logo"><a asp-area="" asp-controller="Home" asp-action="index"><img src="~/img/logo.png" alt="" /></a></div>
 
-        @RenderBody()
+                <!-- consult-nav -->
+                <nav class="consult-nav">
 
+                    <!-- consult-menu -->
+                    <ul class="consult-menu">
+                        <li>
+                            <a asp-area="" asp-controller="Home" asp-action="index">Home</a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-controller="Home" asp-action="about">about</a>
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href="#">booking</a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a asp-area="" asp-controller="Movies" asp-action="Index">Movies</a>
+                                </li>
+                                <li>
+                                    <a asp-area="" asp-controller="Cineplexes" asp-action="Index">Cineplexes</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">cart</a>
+                        </li>
+                        <li>
+                            <a href="#">login</a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="#">Google</a>
+                                </li>
+                                <li>
+                                    <a href="#">Facebook</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav><!-- End / consult-nav -->
+
+            </div>
+        </header><!-- End / header -->
+        <!-- Content-->
+        <div class="md-content">
+            @RenderBody()
+        </div>
         <!-- footer data is empty-->
         <!-- footer -->
         <footer class="footer">
@@ -100,7 +147,6 @@
             </div>
             <div class="footer__copyright">2017 &copy; Copyright Awe7. All rights Reserved.</div>
         </footer><!-- End / footer -->
-
     </div>
     <!-- Vendors-->
     <!-- Later look at the scripts I won't need in order for the bootstrap to still work -->
