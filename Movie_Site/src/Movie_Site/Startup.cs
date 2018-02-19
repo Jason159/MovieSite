@@ -53,6 +53,7 @@ namespace Movie_Site
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
+            services.AddDbContext<Models.Movie_SiteContext>(options => options.UseSqlServer(Configuration["Data:Movie_SiteContext:ConnectionString"]));
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
