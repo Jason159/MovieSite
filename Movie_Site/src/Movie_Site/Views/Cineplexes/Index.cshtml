@@ -1,51 +1,36 @@
 @model IEnumerable<Movie_Site.Models.Cineplex>
 
-<!-- Section -->
 <section class="md-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-xl-8 offset-0 offset-sm-0 offset-md-0 offset-lg-1 offset-xl-2 ">
 
-                <p>
-                    <a asp-action="Create">Create New</a>
-                </p>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Cdescription)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ImageUrl)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Location)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Cdescription)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ImageUrl)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Location)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.CineplexId">Edit</a> |
-                                    <a asp-action="Details" asp-route-id="@item.CineplexId">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.CineplexId">Delete</a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                <!-- title-01 -->
+                <div class="title-01 title-01__style-04">
+                    <h2 class="title-01__title">List of Cineplexes</h2>
+                </div><!-- End / title-01 -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="md-section" style="background-color:#f7f7f7;padding:0;">
+    <div class="row">
+        <div class="consult-slide">
+            <!-- carousel__element owl-carousel -->
+            <div class="carousel__element owl-carousel" data-options='{"loop":true,"dots":true,"nav":false,"margin":30,"responsive":{"0":{"items":1},"768":{"items":2},"992":{"items":3}}}'>
+
+                @foreach (var i in Model)
+                {
+                    <!-- textbox -->
+                    <div class="textbox textbox__style-02">
+                        <div class="textbox__image"><a href="#"><img src="@i.ImageUrl" alt="" /></a></div>
+                        <div class="textbox__body">
+                            <h2 class="textbox__title"><a href="#">@i.Location</a></h2>
+                            <div class="textbox__description">@i.Cdescription </div>
+                        </div>
+                    </div><!-- End / textbox -->
+                }
             </div>
         </div>
     </div>

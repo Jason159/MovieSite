@@ -34,42 +34,42 @@ create table SessionTimes
 
 declare @stKilda int;
 insert into Cineplex (Location, CDescription, ImageUrl) 
-values ('St Kilda', 'description...', '~/img/StKilda.png');
+values ('St Kilda', 'The St Kilda cinema is located in a suburb within the inner-city of Melbourne. This St Kilda cinema has an outdoor cinema for their customers and provide excellent movie session times for all current movies and also displays all up and coming movies.', '/img/StKilda.png');
 set @stKilda = SCOPE_IDENTITY();
 
 declare @fitzroy int;
 insert into Cineplex (Location, CDescription, ImageUrl) 
-values ('Fitzroy', 'description...', '~/img/Fitzroy.png');
+values ('Fitzroy', 'The beautiful and luxurious Fitzroy cinema is located within the suburb of the inner-city of Melbourne. The Fitzroy cinema will provide movie session times for all current movies and also displays all up and coming movies.', '/img/Fitzroy.png');
 set @fitzroy = SCOPE_IDENTITY();
 
 declare @melbourneCBD int;
 insert into Cineplex (Location, CDescription, ImageUrl) 
-values ('Melbourne CBD', 'description...', '~/img/MelbourneCBD.png');
+values ('Melbourne CBD', 'The MelbourneCBD cinema is located in the center of Melbourne. The venue is updated with the latest technology that will help provide customers with the best viewing if all current movies and also displays all up and coming movies.', '/img/MelbourneCBD.png');
 set @melbourneCBD = SCOPE_IDENTITY();
 
 declare @sunshine int;
 insert into Cineplex (Location, CDescription, ImageUrl) 
-values ('Sunshine', 'description...', '~/img/Sunshine.png');
+values ('Sunshine', 'The Sunshine cinema is located in a western suburb of Melbourne. This venue is vintage and acts like an olden day theater that will help customers with their movie session times for all current movies and also displays all up and coming movies.', '/img/Sunshine.png');
 set @sunshine = SCOPE_IDENTITY();
 
 declare @lilydale int;
 insert into Cineplex (Location, CDescription, ImageUrl) 
-values ('Lilydale', 'description...', '~/img/Lilydale.png');
+values ('Lilydale', 'The Lilydale cinema is located in the suburb of the north east of Melbourne. This venue will provide accurate movie session times for all current movies to allow their customers to come in time to watch trailers for new and upcoming movies.', '/img/Lilydale.png');
 set @lilydale = SCOPE_IDENTITY();
 
 declare @theMatrix int;
 insert into Movie (Title, MDescription, ImageUrl, Price)
-values ('The Matrix', 'description...', '/img/TheMatrix.png', 10.00);
+values ('The Matrix', 'In a distant future a hacker called Neo is seeking out a dangerous hacker called Morpheus but instead is seeked out by a woman called Trinity. Who introduce Neo to Morpheos, to which Neo will help their cause.', '/img/TheMatrix.png', 10.00);
 set @theMatrix = SCOPE_IDENTITY();
 
 declare @theMatrixReloaded int;
 insert into Movie (Title, MDescription, ImageUrl, Price)
-values ('The Matrix Reloaded', 'description...', '/img/TheMatrixReloaded.png', 15.00);
+values ('The Matrix Reloaded', 'A sequel to the first film "Matrix", Neo, Trinity and Morpheos are still fighting to overthrow the Matrix against the Machine Army. Neo will achieve this feat by being the "One" and using his weaponry and attained powers.', '/img/TheMatrixReloaded.png', 15.00);
 set @theMatrixReloaded = SCOPE_IDENTITY();
 
 declare @theMatrixRevolution int;
 insert into Movie (Title, MDescription, ImageUrl, Price)
-values ('The Matrix Revolution', 'description...', '/img/TheMatrixRevolution.png', 20.00);
+values ('The Matrix Revolution', 'The Machine Army are winning against the revolting humans and are soon to complete the object. Neo is now stuck in a limbo world and is trying to escape to rescue and become the "One".', '/img/TheMatrixRevolution.png', 20.00);
 set @theMatrixRevolution = SCOPE_IDENTITY();
 
 insert into SessionTimes(CineplexID, MovieID, MovieTime) 
