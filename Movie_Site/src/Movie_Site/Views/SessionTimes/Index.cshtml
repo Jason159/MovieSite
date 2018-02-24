@@ -1,41 +1,54 @@
 @model IEnumerable<Movie_Site.Models.SessionTimes>
 
-@{
-    ViewData["Title"] = "Index";
-}
+<section class="md-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 ">
+                <!-- title-01 -->
+                <div class="title-01 title-01__style-03 md-text-left">
+                    <h6 class="title-01__subTitle">MOVIE NAME HERE</h6>
+                    <h2 class="title-01__title">Session Times</h2>
+                    <div>
+                        <table cellpadding="10">
+                            <tr>
+                                <th>
+                                    Date
+                                </th>
+                                <th>
+                                    Time
+                                </th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                // Later do an if statement to check cineplex and movie with a count, if count = 0 display msg
+                                <tr>
+                                    <td>
+                                        @item.MovieTime.ToString("hh:mm tt")
+                                    </td>
+                                    <td>
+                                        @item.MovieTime.ToString("dd MMMM")
+                                    </td>
+                                    <td>
+                                        <button>BOOK</button>
+                                    </td>
+                                </tr>
+                                    
+                            }
+                        </table>
+                    </div>
+                </div><!-- End / title-01 -->
+              </div>
+            <div class="col-lg-6 ">
+                <div class="js-consult-slider">
+                    <!-- Replace image with relative images-->
+                    <!-- carousel__element owl-carousel -->
+                    <div class="carousel__element owl-carousel" data-options='{"items":1,"loop":true,"dots":false,"nav":false,"margin":30,"responsive":{"0":{"items":2},"576":{"items":3},"992":{"items":1}}}'>
+                        <div class="image-full"><img src="~/img/image-01.jpg" alt=""></div>
+                        <div class="image-full"><img src="~/img/image-02.jpg" alt=""></div>
+                    </div><!-- End / carousel__element owl-carousel -->
 
-<h2>Index</h2>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.BookedSeats)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MovieTime)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookedSeats)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MovieTime)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.SessionId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.SessionId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.SessionId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
