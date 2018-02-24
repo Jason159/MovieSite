@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Movie_Site.Models.Cineplex>
+
+@* SHOULD LOOK RIGHT BUT NOT TESTED
+    
+    CANT SEEM TO MANUALLY GO TO THIS PAGE *@
+
+<section class="md-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-8 offset-0 offset-sm-0 offset-md-0 offset-lg-1 offset-xl-2 ">
+
+                <!-- title-01 -->
+                <div class="title-01 title-01__style-04">
+                    <h2 class="title-01__title">List of Cineplexes</h2>
+                </div><!-- End / title-01 -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="md-section" style="background-color:#f7f7f7;padding:0;">
+    <div class="row">
+        <div class="consult-slide">
+            <!-- carousel__element owl-carousel -->
+            <div class="carousel__element owl-carousel" data-options='{"loop":true,"dots":true,"nav":false,"margin":30,"responsive":{"0":{"items":1},"768":{"items":2},"992":{"items":3}}}'>
+
+                @foreach (var i in Model)
+                {
+                    <!-- textbox -->
+                    <div class="textbox textbox__style-02">
+                        <div class="textbox__image"><a href="#"><img src="@i.ImageUrl" alt="" /></a></div>
+                        <div class="textbox__body">
+                            <h2 class="textbox__title"><a href="#">@i.Location</a></h2>
+                            <div class="textbox__description">@i.Cdescription </div>
+                        </div>
+                    </div><!-- End / textbox -->
+                }
+            </div>
+        </div>
+    </div>
+</section>

@@ -146,5 +146,36 @@ namespace Movie_Site.Controllers
         {
             return _context.Movie.Any(e => e.MovieId == id);
         }
+
+        private List<Cineplex> getCineplexID(int movieID)
+        {
+            var matches = _context.SessionTimes.Where(s => s.MovieId == movieID).Select(s => s.CineplexId).Distinct().ToList();
+            List<Cineplex> cine = new List<Cineplex>();
+            foreach (var m in matches)
+            {
+                foreach(var c in _context.Cineplex)
+                {
+                    if(m == c.CineplexId)
+                    {
+                        cine.Add(c);
+                    }
+                }
+            }
+
+            return cine;
+        }
+
+        // CANNOT CONFIRM WORKING
+        // Posts movie id and saves to viewbag then shows cineplexes
+        [HttpPost]
+        public IActionResult selectCineplex(int id)
+        {
+            // Sets SelectMovie with movieID
+            ViewBag.SelectMovie = id;
+
+            var cineplexes = getCineplexID(id);
+
+            return View(cineplexes);
+        }
     }
 }

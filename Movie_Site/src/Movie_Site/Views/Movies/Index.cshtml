@@ -23,11 +23,13 @@
                 @foreach (var item in Model)
                 {
                     <div class="col-md-4 col-lg-4 ">
-
+                       @* NOT WORKING *@
+                    <form id="selectMovie" name="selectMovie" asp-controller="Movies" asp-action="selectCineplex" method="post">
                         <!-- textbox -->
                         <div class="textbox">
-                            <div class="textbox__image"><a href="#">
-                                <img class="" src="@item.ImageUrl" alt="" />
+                            <div class="textbox__image">
+                                <a href="#" value="@item.MovieId" onclick="document.selectMovie.submit();">
+                                    <img class="" src="@item.ImageUrl" alt="" />
                                 </a>
                             </div>
                             <div class="textbox__body">
@@ -35,6 +37,7 @@
                                 <div class="textbox__description">@item.Mdescription</div>
                             </div>
                         </div><!-- End / textbox -->
+                    </form>                       
                     </div>
                 }
             </div>
