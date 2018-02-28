@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Movie_Site.Models;
+using Microsoft.AspNetCore.Http;
+using System.Diagnostics;
 
 namespace Movie_Site.Controllers
 {
@@ -147,6 +149,8 @@ namespace Movie_Site.Controllers
             return _context.Movie.Any(e => e.MovieId == id);
         }
 
+
+        // Takes movie ID, matches with session times and returns a list of matching cineplexes
         private List<Cineplex> getCineplexID(int movieID)
         {
             var matches = _context.SessionTimes.Where(s => s.MovieId == movieID).Select(s => s.CineplexId).Distinct().ToList();
@@ -165,14 +169,32 @@ namespace Movie_Site.Controllers
             return cine;
         }
 
-        // CANNOT CONFIRM WORKING
+        // Takes movie ID and returns Title
+        private string getTitle(int id)
+        {
+            Debug.WriteLine("getTitle: " + id);
+            var movie = _context.Movie.Where(m => m.MovieId == id).FirstOrDefault();
+
+            Debug.WriteLine("Movie: " + movie);
+            var title = movie.Title;
+
+            return title;
+        }
+
         // Posts movie id and saves to viewbag then shows cineplexes
         [HttpPost]
-        public IActionResult selectCineplex(int id)
+        public IActionResult SelectCineplex(int id)
         {
-            // Sets SelectMovie with movieID
-            ViewBag.SelectMovie = id;
+            // Sets session for MovieID and Title
+            Debug.WriteLine("POST id: "+id);
+            HttpContext.Session.SetInt32("MovieID", id);
+            HttpContext.Session.SetString("Title", getTitle(id));
 
+
+            // Sets Viewbag.MovieTitle to be used in view            
+            ViewBag.MovieTitle = HttpContext.Session.GetString("Title");
+
+            //Gets model of cineplexes that display the selected movie
             var cineplexes = getCineplexID(id);
 
             return View(cineplexes);

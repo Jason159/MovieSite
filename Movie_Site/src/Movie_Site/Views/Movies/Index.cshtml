@@ -23,21 +23,27 @@
                 @foreach (var item in Model)
                 {
                     <div class="col-md-4 col-lg-4 ">
-                       @* NOT WORKING *@
-                    <form id="selectMovie" name="selectMovie" asp-controller="Movies" asp-action="selectCineplex" method="post">
                         <!-- textbox -->
                         <div class="textbox">
-                            <div class="textbox__image">
-                                <a href="#" value="@item.MovieId" onclick="document.selectMovie.submit();">
-                                    <img class="" src="@item.ImageUrl" alt="" />
-                                </a>
-                            </div>
-                            <div class="textbox__body">
-                                <h2 class="textbox__title"><a href="#">@item.Title</a></h2>
-                                <div class="textbox__description">@item.Mdescription</div>
-                            </div>
-                        </div><!-- End / textbox -->
-                    </form>                       
+
+                        @* In order to use onclick to submit dynamic forms, I had to create different form names
+                            Using the same form names resulted in only the first variable to be posted. *@
+                            <form id="Select @item.MovieId" name="Select+@item.MovieId" asp-controller="Movies" asp-action="selectCineplex" method="post">
+                                <input type="hidden" value="@item.MovieId" name="id" />
+                                
+                                    <div class="textbox__image">
+                                        <a href="#" onclick="document.forms['Select @item.MovieId'].submit();">
+                                            <img class="" src="@item.ImageUrl" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="textbox__body">
+                                        <a href="#" onclick="document.forms['Select @item.MovieId'].submit();">
+                                            <h2 class="textbox__title">@item.Title</h2>
+                                        </a>
+                                        <div class="textbox__description">@item.Mdescription</div>
+                                    </div>
+                            </form> 
+                        </div><!-- End / textbox -->                    
                     </div>
                 }
             </div>
