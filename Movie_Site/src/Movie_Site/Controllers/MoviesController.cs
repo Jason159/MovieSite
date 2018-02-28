@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Movie_Site.Models;
+using Microsoft.AspNetCore.Http;
+using System.Diagnostics;
 
 namespace Movie_Site.Controllers
 {
@@ -145,6 +147,57 @@ namespace Movie_Site.Controllers
         private bool MovieExists(int id)
         {
             return _context.Movie.Any(e => e.MovieId == id);
+        }
+
+
+        // Takes movie ID, matches with session times and returns a list of matching cineplexes
+        private List<Cineplex> getCineplexID(int movieID)
+        {
+            var matches = _context.SessionTimes.Where(s => s.MovieId == movieID).Select(s => s.CineplexId).Distinct().ToList();
+            List<Cineplex> cine = new List<Cineplex>();
+            foreach (var m in matches)
+            {
+                foreach(var c in _context.Cineplex)
+                {
+                    if(m == c.CineplexId)
+                    {
+                        cine.Add(c);
+                    }
+                }
+            }
+
+            return cine;
+        }
+
+        // Takes movie ID and returns Title
+        private string getTitle(int id)
+        {
+            Debug.WriteLine("getTitle: " + id);
+            var movie = _context.Movie.Where(m => m.MovieId == id).FirstOrDefault();
+
+            Debug.WriteLine("Movie: " + movie);
+            var title = movie.Title;
+
+            return title;
+        }
+
+        // Posts movie id and saves to viewbag then shows cineplexes
+        [HttpPost]
+        public IActionResult SelectCineplex(int id)
+        {
+            // Sets session for MovieID and Title
+            Debug.WriteLine("POST id: "+id);
+            HttpContext.Session.SetInt32("MovieID", id);
+            HttpContext.Session.SetString("Title", getTitle(id));
+
+
+            // Sets Viewbag.MovieTitle to be used in view            
+            ViewBag.MovieTitle = HttpContext.Session.GetString("Title");
+
+            //Gets model of cineplexes that display the selected movie
+            var cineplexes = getCineplexID(id);
+
+            return View(cineplexes);
         }
     }
 }
