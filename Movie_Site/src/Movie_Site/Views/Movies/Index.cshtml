@@ -28,7 +28,7 @@
 
                         @* In order to use onclick to submit dynamic forms, I had to create different form names
                             Using the same form names resulted in only the first variable to be posted. *@
-                            <form id="Select @item.MovieId" name="Select+@item.MovieId" asp-controller="Movies" asp-action="selectCineplex" method="post">
+                            <form id="Select @item.MovieId" asp-controller="Movies" asp-action="SelectCineplex" method="post">
                                 <input type="hidden" value="@item.MovieId" name="id" />
                                 
                                     <div class="textbox__image">
