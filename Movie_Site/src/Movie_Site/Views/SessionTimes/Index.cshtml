@@ -6,10 +6,12 @@
             <div class="col-lg-6 ">
                 <!-- title-01 -->
                 <div class="title-01 title-01__style-03 md-text-left">
-                    <h6 class="title-01__subTitle">
-                        <a asp-area="" asp-controller="Movies" asp-action="index">@ViewBag.MovieTitle</a> > 
-                        <a asp-area="" asp-controller="Movies" asp-action="selectCineplex">@ViewBag.Location</a> ></h6>
                     <h2 class="title-01__title">Session Times</h2>
+                    <nav style="padding-bottom:10px">
+                        <a class="breadcrumb__item" asp-area="" asp-controller="Movies" asp-action="Index">@ViewBag.MovieTitle</a>
+                        <a class="breadcrumb__item" asp-area="" asp-controller="Movies" asp-action="SelectCineplex">@ViewBag.Location</a>
+                        <span class="breadcrumb__item active">Session Times</span>
+                    </nav>
                     <div>
                         <table cellpadding="10">
                             <tr>

@@ -213,6 +213,7 @@ namespace Movie_Site.Controllers
         }
 
         // Shows cineplex selection when movieID session is already set
+        // Needs exception handling in case manually nav
         public IActionResult SelectCineplex()
         {
             var id = HttpContext.Session.GetInt32("MovieID").Value;

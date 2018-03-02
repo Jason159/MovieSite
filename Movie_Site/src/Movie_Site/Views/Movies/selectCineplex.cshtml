@@ -11,8 +11,11 @@
 
                 <!-- title-01 -->
                 <div class="title-01 title-01__style-04">
-                    <h6 class="title-01__subTitle"><a asp-area="" asp-controller="Movies" asp-action="index">@ViewBag.MovieTitle</a> ></h6>
                     <h2 class="title-01__title">Select Cineplex</h2>
+                    <nav>
+                        <a class="breadcrumb__item" asp-area="" asp-controller="Movies" asp-action="index">@ViewBag.MovieTitle</a>
+                        <span class="breadcrumb__item active">Cineplex</span>
+                    </nav>
                 </div><!-- End / title-01 -->
             </div>
         </div>
