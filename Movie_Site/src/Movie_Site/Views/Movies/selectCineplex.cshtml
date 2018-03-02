@@ -29,14 +29,25 @@
                 {
                     <!-- textbox -->
                     <div class="textbox textbox__style-02">
-                        <div class="textbox__image"><a href="#"><img src="@i.ImageUrl" alt="" /></a></div>
-                        <div class="textbox__body">
-                            <h2 class="textbox__title"><a href="#">@i.Location</a></h2>
-                            <div class="textbox__description">@i.Cdescription </div>
-                        </div>
+                        <form id="Cineplex @i.CineplexId" asp-controller="Movies" asp-action="SetCineplex" method="post">
+                            <div class="textbox__image">
+                                <input type="hidden" value="@i.CineplexId" name="id" />
+                                <a href="#" onclick="document.forms['Cineplex @i.CineplexId'].submit();">
+                                    <img src="@i.ImageUrl" alt="" />
+                                </a>
+                            </div>
+                            <div class="textbox__body">
+                                <h2 class="textbox__title">
+                                    <a href="#" onclick="document.forms['Cineplex @i.CineplexId'].submit();">
+                                        @i.Location
+                                    </a>
+                                </h2>
+                                <div class="textbox__description">@i.Cdescription</div>
+                            </div>
+                            </form>
                     </div><!-- End / textbox -->
                 }
             </div>
         </div>
     </div>
-</section>
+</section>   

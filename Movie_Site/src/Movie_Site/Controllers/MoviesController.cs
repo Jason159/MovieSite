@@ -181,6 +181,18 @@ namespace Movie_Site.Controllers
             return title;
         }
 
+        // Takes cine ID and returns location
+        private string getLoc(int id)
+        {
+            Debug.WriteLine("getCine: " + id);
+            var cine = _context.Cineplex.Where(c => c.CineplexId == id).FirstOrDefault();
+
+            Debug.WriteLine("Cine: " + cine);
+            var loc = cine.Location;
+
+            return loc;
+        }
+
         // Posts movie id and saves to viewbag then shows cineplexes
         [HttpPost]
         public IActionResult SelectCineplex(int id)
@@ -198,6 +210,30 @@ namespace Movie_Site.Controllers
             var cineplexes = getCineplexID(id);
 
             return View(cineplexes);
+        }
+
+        // Shows cineplex selection when movieID session is already set
+        public IActionResult SelectCineplex()
+        {
+            var id = HttpContext.Session.GetInt32("MovieID").Value;
+            var cineplexes = getCineplexID(id);
+
+            // Sets Viewbag.MovieTitle to be used in view            
+            ViewBag.MovieTitle = HttpContext.Session.GetString("Title");
+
+            return View(cineplexes);
+        }
+
+        // Sets cineplex and redirects to session times
+        [HttpPost]
+        public IActionResult SetCineplex(int id)
+        {
+            // Sets session for CineplexID and location
+            Debug.WriteLine("POST id: " + id);
+            HttpContext.Session.SetInt32("CineplexID", id);
+            HttpContext.Session.SetString("Location", getLoc(id));
+                        
+            return RedirectToAction("Index", "SessionTimes");
         }
     }
 }

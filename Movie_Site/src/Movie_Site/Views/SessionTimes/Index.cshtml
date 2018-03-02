@@ -6,7 +6,9 @@
             <div class="col-lg-6 ">
                 <!-- title-01 -->
                 <div class="title-01 title-01__style-03 md-text-left">
-                    <h6 class="title-01__subTitle">MOVIE NAME HERE @*@ViewBag.MovieTitle > @ViewBag.Cineplex >*@</h6>
+                    <h6 class="title-01__subTitle">
+                        <a asp-area="" asp-controller="Movies" asp-action="index">@ViewBag.MovieTitle</a> > 
+                        <a asp-area="" asp-controller="Movies" asp-action="selectCineplex">@ViewBag.Location</a> ></h6>
                     <h2 class="title-01__title">Session Times</h2>
                     <div>
                         <table cellpadding="10">

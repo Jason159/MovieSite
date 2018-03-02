@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Movie_Site.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Movie_Site.Controllers
 {
@@ -19,10 +20,26 @@ namespace Movie_Site.Controllers
         }
 
         // GET: SessionTimes
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var movie_SiteContext = _context.SessionTimes.Include(s => s.Cineplex).Include(s => s.Movie);
-            return View(await movie_SiteContext.ToListAsync());
+            // Viewbags to display data
+            ViewBag.MovieTitle = HttpContext.Session.GetString("Title");
+            ViewBag.Location = HttpContext.Session.GetString("Location");
+
+            //var movie_SiteContext = _context.SessionTimes.Include(s => s.Cineplex).Include(s => s.Movie);
+
+            var sessionTimes = getSessions();
+            return View(sessionTimes);
+        }
+
+        // Gets all Session times
+        public List<SessionTimes> getSessions()
+        {
+            var movieID = HttpContext.Session.GetInt32("MovieID");
+            var cineplexID = HttpContext.Session.GetInt32("CineplexID");
+            var sessions = _context.SessionTimes.Where(s => s.CineplexId == cineplexID && s.MovieId == movieID).ToList();
+
+            return sessions;
         }
 
         // GET: SessionTimes/Details/5
