@@ -1,5 +1,25 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿<div class="md-content">
+    <section class="md-section js-consult-form" style="background-color:#f7f7f7;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-0 offset-sm-0 offset-md-0 offset-lg-1 ">
+                    <!-- form-01 -->
+                    <div class="consult-form js-consult-form__content" style="padding-top:10px; padding-bottom:20px">
+                        <h2 class="title-01__title">Seat Selection</h2>
+                        <nav style="padding-bottom:10px">
+                            <a class="breadcrumb__item" asp-area="" asp-controller="Movies" asp-action="Index">@ViewBag.MovieTitle</a>
+                            <a class="breadcrumb__item" asp-area="" asp-controller="Movies" asp-action="SelectCineplex">@ViewBag.Location</a>
+                            <a class="breadcrumb__item" asp-area="" asp-controller="SessionTimes" asp-action="Index">@ViewBag.Time</a>
+                            <br /><span class="breadcrumb__item active">Seat Selection</span>
+                        </nav>
+                        
+                        <!-- Insert JQUERY here-->
+                            
+                        <a class="btn btn-primary btn-w180" href="#">BOOK SEATS</a>
+                    </div><!-- End / form-01 -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

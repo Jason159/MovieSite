@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Movie_Site.Models;
 using Microsoft.AspNetCore.Http;
+using System.Diagnostics;
 
 namespace Movie_Site.Controllers
 {
@@ -28,18 +29,48 @@ namespace Movie_Site.Controllers
 
             //var movie_SiteContext = _context.SessionTimes.Include(s => s.Cineplex).Include(s => s.Movie);
 
-            var sessionTimes = getSessions();
+            var sessionTimes = GetSessions();
             return View(sessionTimes);
         }
 
+        // Figure out what data is required here after adding/making jquery
+        public IActionResult SeatBooking()
+        {
+            // Viewbags to display data
+            ViewBag.MovieTitle = HttpContext.Session.GetString("Title");
+            ViewBag.Location = HttpContext.Session.GetString("Location");
+            ViewBag.Time = HttpContext.Session.GetString("Time");
+            return View(); 
+        }
+
         // Gets all Session times
-        public List<SessionTimes> getSessions()
+        public List<SessionTimes> GetSessions()
         {
             var movieID = HttpContext.Session.GetInt32("MovieID");
             var cineplexID = HttpContext.Session.GetInt32("CineplexID");
             var sessions = _context.SessionTimes.Where(s => s.CineplexId == cineplexID && s.MovieId == movieID).ToList();
 
             return sessions;
+        }
+
+        // Sets the selected session and redirects to SeatBooking page
+        public IActionResult SetSession(int id)
+        {
+            // RETURNS 0 THIS IS AN ERROR
+            Debug.WriteLine("POST id: " + id);
+            HttpContext.Session.SetString("Time", GetSessionTime(id));
+
+
+            return RedirectToAction("SeatBooking","SessionTimes");
+        }
+
+        // Gets the SessionID and returns the time as a string
+        public String GetSessionTime(int id)
+        {
+            var session = _context.SessionTimes.Where(s => s.SessionId == id).FirstOrDefault();
+            var time = session.MovieTime.ToString("hh: mm tt dd MMMM");
+
+            return time;
         }
 
         // GET: SessionTimes/Details/5

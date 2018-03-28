@@ -151,7 +151,7 @@ namespace Movie_Site.Controllers
 
 
         // Takes movie ID, matches with session times and returns a list of matching cineplexes
-        private List<Cineplex> getCineplexID(int movieID)
+        private List<Cineplex> GetCineplexID(int movieID)
         {
             var matches = _context.SessionTimes.Where(s => s.MovieId == movieID).Select(s => s.CineplexId).Distinct().ToList();
             List<Cineplex> cine = new List<Cineplex>();
@@ -170,7 +170,7 @@ namespace Movie_Site.Controllers
         }
 
         // Takes movie ID and returns Title
-        private string getTitle(int id)
+        private string GetTitle(int id)
         {
             Debug.WriteLine("getTitle: " + id);
             var movie = _context.Movie.Where(m => m.MovieId == id).FirstOrDefault();
@@ -182,7 +182,7 @@ namespace Movie_Site.Controllers
         }
 
         // Takes cine ID and returns location
-        private string getLoc(int id)
+        private string GetLoc(int id)
         {
             Debug.WriteLine("getCine: " + id);
             var cine = _context.Cineplex.Where(c => c.CineplexId == id).FirstOrDefault();
@@ -200,14 +200,14 @@ namespace Movie_Site.Controllers
             // Sets session for MovieID and Title
             Debug.WriteLine("POST id: "+id);
             HttpContext.Session.SetInt32("MovieID", id);
-            HttpContext.Session.SetString("Title", getTitle(id));
+            HttpContext.Session.SetString("Title", GetTitle(id));
 
 
             // Sets Viewbag.MovieTitle to be used in view            
             ViewBag.MovieTitle = HttpContext.Session.GetString("Title");
 
             //Gets model of cineplexes that display the selected movie
-            var cineplexes = getCineplexID(id);
+            var cineplexes = GetCineplexID(id);
 
             return View(cineplexes);
         }
@@ -217,7 +217,7 @@ namespace Movie_Site.Controllers
         public IActionResult SelectCineplex()
         {
             var id = HttpContext.Session.GetInt32("MovieID").Value;
-            var cineplexes = getCineplexID(id);
+            var cineplexes = GetCineplexID(id);
 
             // Sets Viewbag.MovieTitle to be used in view            
             ViewBag.MovieTitle = HttpContext.Session.GetString("Title");
@@ -232,7 +232,7 @@ namespace Movie_Site.Controllers
             // Sets session for CineplexID and location
             Debug.WriteLine("POST id: " + id);
             HttpContext.Session.SetInt32("CineplexID", id);
-            HttpContext.Session.SetString("Location", getLoc(id));
+            HttpContext.Session.SetString("Location", GetLoc(id));
                         
             return RedirectToAction("Index", "SessionTimes");
         }

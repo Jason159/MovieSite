@@ -13,32 +13,36 @@
                         <span class="breadcrumb__item active">Session Times</span>
                     </nav>
                     <div>
-                        <table cellpadding="10">
-                            <tr>
-                                <th>
-                                    Date
-                                </th>
-                                <th>
-                                    Time
-                                </th>
-                            </tr>
-                            @foreach (var item in Model)
-                            {
-                                // Later do an if statement to check cineplex and movie with a count, if count = 0 display msg
+                        <form asp-controller="SessionTimes" asp-action="SetSession" method="post">
+                            <table cellpadding="10">
                                 <tr>
-                                    <td>
-                                        @item.MovieTime.ToString("hh:mm tt")
-                                    </td>
-                                    <td>
-                                        @item.MovieTime.ToString("dd MMMM")
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-default">BOOK</button>
-                                    </td>
+                                    <th>
+                                        Date
+                                    </th>
+                                    <th>
+                                        Time
+                                    </th>
                                 </tr>
-                                    
-                            }
-                        </table>
+
+                                @foreach (var item in Model)
+                                {
+                                    // Later do an if statement to check cineplex and movie with a count, if count = 0 display msg
+
+                                    <tr>
+                                        <td>
+                                            @item.MovieTime.ToString("hh:mm tt")
+                                        </td>
+                                        <td>
+                                            @item.MovieTime.ToString("dd MMMM")
+                                        </td>
+                                        <td>
+                                            <input type="hidden" value="@item.SessionId" name="id" />
+                                            <button class="btn btn-default" value="submit">BOOK</button>
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </form>
                     </div>
                 </div><!-- End / title-01 -->
               </div>
